@@ -1,0 +1,4 @@
+<check>0><what>Сидеть пердеть><pordriadchick>Северстрой><district>Первомайский><timeout>01.01.2022 21:00><timeadd>30.11.2021 18:32><whoadd>Исаева>
+<check>1><what>Стоять ссать><pordriadchick>Опездал><district>Первомайский><timeout>10.01.2022 21:00><timeadd>31.11.2021 01:32><whoadd>Исаева>
+<check>2><what>ХЗ><pordriadchick>Опездал><district>Ленинский><timeout>10.01.2022 21:00><timeadd>31.11.2021 01:32><whoadd>Исаева>
+<check>3><what>ХЗ><pordriadchick>Распиздяй><district>Ленинский><timeout>10.01.2022 21:00><timeadd>31.11.2021 01:32><whoadd>Исаева>
