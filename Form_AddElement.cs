@@ -13,36 +13,13 @@ namespace WindowsFormsApp1
     public partial class Form_AddElement : Form
     {
         User user = new User();
+        List<string> pdrL = new List<string>();   //
         public Form_AddElement(string name)
         {
             InitializeComponent();
             this.user.Name = name;
             dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
-
-            string content = File.ReadAllText("base.txt", Encoding.Default);
-            Decoding dc = new Decoding(content);
-            while (true)
-            {
-                dc.Skip("<check>");
-                string chk = dc.ReadTo(">");
-
-                dc.Skip("<pordriadchick>");
-                string pdr = dc.ReadTo(">");
-
-                if (string.IsNullOrWhiteSpace(chk)) { break; }
-
-                for (int i = 0; i < checkedListBox2.Items.Count; i++)
-                {
-                    if (pdr == checkedListBox2.Items[i].ToString())
-                    {
-                        break;
-                    }
-                    else { checkedListBox2.Items.Add(pdr); }
-                }
-
-
-                //checkedListBox2.Items.Add(pdr);
-            }
+            pdrL = Base_Pdr();
         }
 
         private void Form_AddElement_Load(object sender, EventArgs e)
@@ -56,17 +33,38 @@ namespace WindowsFormsApp1
             {
                 MessageBox.Show("Не заполненно поле что сделать", "Ошибка");
             }
+            else
+            {
+                string content = (
+                    Environment.NewLine +
+                    "<check>" + "1" + ">" +
+                    "<what>" + textBox1.Text + ">" +
+                    "<pordriadchick>" + checkedListBox2.SelectedItem + ">" +
+                    "<district>" + checkedListBox1.SelectedItem + ">" +
+                    "<timeout>" + dateTimePicker1.Text + ">" +
+                    "<timeadd>" + DateTime.Now + ">" +
+                    "<whoadd>" + user.Name + ">"
+                    );
+                File.AppendAllText("base.txt", content, Encoding.Default);
+                this.Close();
+            }
         }
 
         private void button2_Click(object sender, EventArgs e) //add pordiadchick
         {
-            
             if (textBox2.Text == "")
             {
                 MessageBox.Show("В поле подрядчика ничего не введено", "Ошибка");
             }
             else
             {
+
+                string content = (
+                    Environment.NewLine +
+                    "<check>" + "1" + ">" +
+                    "<pordriadchick>" + textBox2.Text + ">"
+                    );
+                File.AppendAllText("pdr.txt", content, Encoding.Default);
                 checkedListBox2.Items.Add(textBox2.Text);
                 textBox2.Text = "";
             }
@@ -75,6 +73,43 @@ namespace WindowsFormsApp1
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             label6.Text = String.Format("Вы выбрали: {0}", dateTimePicker1.Value.ToLongDateString());
+        }
+
+        private List<string> Base_Pdr()
+        {
+            List<string> pdrL = new List<string>();
+            if (File.Exists("pdr.txt"))
+            {
+                string content = File.ReadAllText("pdr.txt", Encoding.Default);
+                Decoding dc = new Decoding(content);
+                while (true)
+                {
+                    dc.Skip("<pordriadchick>");
+                    string pdr = dc.ReadTo(">");
+
+                    if (string.IsNullOrWhiteSpace(pdr))
+                    {
+                        break;
+                    }
+                    checkedListBox2.Items.Add(pdr);
+                    pdrL.Add(pdr);
+                }
+                return pdrL;
+            }
+            else
+            {
+                DialogResult result = MessageBox.Show(
+                    "Файл с базой подрядчиков не найден\n Создать новый пустой?",
+                    "Ошибка",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Error,
+                    MessageBoxDefaultButton.Button1);
+                if (result == DialogResult.Yes)
+                {
+                    File.Create("pdr.txt");
+                }
+                return pdrL;
+            }
         }
 
     }

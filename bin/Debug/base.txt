@@ -1,4 +1,9 @@
-<check>0><what>Сидеть пердеть><pordriadchick>Северстрой><district>Первомайский><timeout>01.01.2022 21:00><timeadd>30.11.2021 18:32><whoadd>Исаева>
-<check>1><what>Стоять ссать><pordriadchick>Опездал><district>Первомайский><timeout>10.01.2022 21:00><timeadd>31.11.2021 01:32><whoadd>Исаева>
-<check>2><what>ХЗ><pordriadchick>Опездал><district>Ленинский><timeout>10.01.2022 21:00><timeadd>31.11.2021 01:32><whoadd>Исаева>
-<check>3><what>ХЗ><pordriadchick>Распиздяй><district>Ленинский><timeout>10.01.2022 21:00><timeadd>31.11.2021 01:32><whoadd>Исаева>
+<check>0><what>Сидеть><pordriadchick>Северстой><district>Ленинский><timeout>01.01.2022 21:00><timeadd>30.11.2021 18:32><whoadd>Исаева>
+
+
+<check>1><what>Сидеть пердеть><pordriadchick>Северстрой><district>Первомайский><timeout>1 февраля 2022 г.><timeadd>01.02.2022 0:33:16><whoadd>user>
+<check>1><what>ХЗ><pordriadchick>43><district>Ленинский><timeout>1 февраля 2022 г.><timeadd>01.02.2022 0:35:06><whoadd>user>
+<check>1><what>Убрать снег><pordriadchick>Северстрой><district>Ленинский><timeout>9 февраля 2022 г.><timeadd>01.02.2022 0:35:27><whoadd>user>
+<check>1><what>Навалить кучу><pordriadchick>Северстрой><district>Ленинский><timeout>1 февраля 2022 г.><timeadd>01.02.2022 0:39:54><whoadd>user>
+<check>1><what>Убрать кучу><pordriadchick>Северстрой><district>Первомайский><timeout>1 февраля 2022 г.><timeadd>01.02.2022 0:54:53><whoadd>user>
+<check>1><what>Навалить огромную кучу><pordriadchick>Гагат><district>Первомайский><timeout>22 февраля 2022 г.><timeadd>01.02.2022 0:58:47><whoadd>user>

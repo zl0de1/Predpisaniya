@@ -105,7 +105,9 @@ namespace WindowsFormsApp1
             }
             else 
             {
-                DialogResult result = MessageBox.Show("Файл с базой не найден\n Создать новый пустой?", "Ошибка", 
+                DialogResult result = MessageBox.Show(
+                    "Файл с базой не найден\n Создать новый пустой?",
+                    "Ошибка", 
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Error,
                     MessageBoxDefaultButton.Button1);
