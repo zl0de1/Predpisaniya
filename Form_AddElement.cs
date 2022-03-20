@@ -38,8 +38,9 @@ namespace WindowsFormsApp1
                 string content = (
                     Environment.NewLine +
                     "<check>" + "1" + ">" +
-                    "<what>" + textBox1.Text + ">" +
                     "<pordriadchick>" + checkedListBox2.SelectedItem + ">" +
+                    "<object>" + textBox3.Text + ">" +
+                    "<what>" + textBox1.Text + ">" +
                     "<district>" + checkedListBox1.SelectedItem + ">" +
                     "<timeout>" + dateTimePicker1.Text + ">" +
                     "<timeadd>" + DateTime.Now + ">" +

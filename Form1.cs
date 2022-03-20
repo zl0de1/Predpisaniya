@@ -30,7 +30,7 @@ namespace WindowsFormsApp1
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) //addFormGeneral
         {
             
             user.Name = "user";
@@ -53,7 +53,7 @@ namespace WindowsFormsApp1
             ReloadBase(podriadchiki);
         }
 
-        private void ReloadBase(List<string> podriadchiki) //проверка наличия базы
+        private void ReloadBase(List<string> podriadchiki) //проверка наличия базы и загрузка
         {
 
             if (File.Exists("base.txt"))
@@ -67,11 +67,14 @@ namespace WindowsFormsApp1
                     dc.Skip("<check>");
                     string chk = dc.ReadTo(">");
 
-                    dc.Skip("<what>");
-                    string what = dc.ReadTo(">");
-
                     dc.Skip("<pordriadchick>");
                     string pdr = dc.ReadTo(">");
+
+                    dc.Skip("<object>");
+                    string obj = dc.ReadTo(">");
+
+                    dc.Skip("<what>");
+                    string what = dc.ReadTo(">");
 
                     dc.Skip("<district>");
                     string dst = dc.ReadTo(">");
@@ -92,8 +95,9 @@ namespace WindowsFormsApp1
 
                     ListViewItem listViewItem = new ListViewItem(new string[] {
                         chk,
-                        what,
                         pdr,
+                        obj,
+                        what,
                         dst,
                         tout,
                         tadd,
@@ -118,5 +122,6 @@ namespace WindowsFormsApp1
                 //this.TopMost = true;
             }
         }
+
     }
 }
