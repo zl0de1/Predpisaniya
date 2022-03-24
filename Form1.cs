@@ -15,6 +15,7 @@ namespace WindowsFormsApp1
     {
         User user = new User();
         List<string> podriadchiki = new List<string>();
+
         public Form1()
         {
             InitializeComponent();
@@ -32,20 +33,9 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e) //addFormGeneral
         {
-            
             user.Name = "user";
             Form_AddElement FrAdd = new Form_AddElement(user.Name);
             FrAdd.Show();
-        }
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            
         }
 
         private void button2_Click(object sender, EventArgs e) //reload
@@ -58,7 +48,7 @@ namespace WindowsFormsApp1
 
             if (File.Exists("base.txt"))
             {
-                listView1.Items.Clear();
+                dataGridView1.Rows.Clear();
                 string content = File.ReadAllText("base.txt", Encoding.Default);
 
                 Decoding dc = new Decoding(content);
@@ -92,8 +82,7 @@ namespace WindowsFormsApp1
                     {
                         break;
                     }
-
-                    ListViewItem listViewItem = new ListViewItem(new string[] {
+                    dataGridView1.Rows.Add(
                         chk,
                         pdr,
                         obj,
@@ -101,11 +90,8 @@ namespace WindowsFormsApp1
                         dst,
                         tout,
                         tadd,
-                        wadd });
-
-                    listView1.Items.Add(listViewItem);
+                        wadd);                    
                 }
-
             }
             else 
             {
@@ -122,6 +108,8 @@ namespace WindowsFormsApp1
                 //this.TopMost = true;
             }
         }
-
+        
+        //надо будет пихнуть в отдельный метод где то вне(лишний повтор в 2х классах)
+        
     }
 }
