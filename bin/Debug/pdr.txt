@@ -1,5 +1,5 @@
-<check>1><pordriadchick>Гагат>
-<check>1><pordriadchick>Нордстрой>
-<check>1><pordriadchick>Аквариум>
-<check>1><pordriadchick>СеверАвто>
-<check>1><pordriadchick>Опёздал>
+<index>1><name>Гагат>
+<index>1><name>Нордстрой>
+<index>1><name>Аквариум>
+<index>1><name>СеверАвто>
+<index>1><name>Опёздал>

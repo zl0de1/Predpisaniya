@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-//using Newtonsoft.Json;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp1
@@ -19,9 +18,6 @@ namespace WindowsFormsApp1
         public Form1()
         {
             InitializeComponent();
-            
-            ReloadBase(podriadchiki);
-            toolStripStatusLabel1.Text = DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString();
         }
 
         public void Form1_Load(object sender, EventArgs e)
@@ -29,36 +25,74 @@ namespace WindowsFormsApp1
             //user.Name = "user";
             linkLabel1.Text = "Вы вошли как " + user.Name;
 
+            var dir = new DirectoryInfo(Environment.CurrentDirectory + @"\bases");
+            foreach (FileInfo file in dir.GetFiles())
+            {
+                comboBox1.Items.Add(Path.GetFileNameWithoutExtension(file.FullName));
+            }
+
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedBase = comboBox1.SelectedItem.ToString();
+            //MessageBox.Show(selectedBase);
+            
+            string pathToBase = Environment.CurrentDirectory + @"\bases\" + selectedBase +".txt";
+            
+            user.PathToBase = pathToBase;
+
+            List <Predpisanie> prd = new List<Predpisanie>(ReloadBase(pathToBase));
+            dataGridView1.DataSource = prd;
+            dataGridView1.Columns[0].Width = 33;
+            dataGridView1.Columns[1].Width = 90;
+            dataGridView1.Columns[2].Width = 203;
+            dataGridView1.Columns[3].Width = 330;
+            dataGridView1.Columns[4].Width = 105;
+            dataGridView1.Columns[5].Width = 128;
+            dataGridView1.Columns[6].Width = 128;
+            dataGridView1.Columns[7].Width = 90;
+
+            toolStripStatusLabel1.Text = DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + " Кол-во элементов массива: " + prd.Count;
         }
 
         private void button1_Click(object sender, EventArgs e) //addFormGeneral
         {
             user.Name = "user";
-            Form_AddElement FrAdd = new Form_AddElement(user.Name);
-            FrAdd.Show();
+            if (string.IsNullOrWhiteSpace(user.PathToBase))
+            {
+                MessageBox.Show("Не выбран месяц", "Ошибка");
+            }
+            else
+            {
+                Form_AddElement FrAdd = new Form_AddElement(user.Name, user.PathToBase);
+                FrAdd.Show();
+            }
         }
 
         private void button2_Click(object sender, EventArgs e) //reload
         {
-            ReloadBase(podriadchiki);
+            //ReloadBase();
         }
 
-        private void ReloadBase(List<string> podriadchiki) //проверка наличия базы и загрузка
+        private List<Predpisanie> ReloadBase(string path) //проверка наличия базы и загрузка
         {
-
-            if (File.Exists("base.txt"))
+            List<Predpisanie> prd = new List<Predpisanie>();
+            if (File.Exists(path))
             {
-                dataGridView1.Rows.Clear();
-                string content = File.ReadAllText("base.txt", Encoding.Default);
-
+                //dataGridView1.Rows.Clear();
+                string content = File.ReadAllText(path, Encoding.Default);
+                
                 Decoding dc = new Decoding(content);
                 while (true)
                 {
-                    dc.Skip("<check>");
-                    string chk = dc.ReadTo(">");
+                    dc.Skip("<index>");
+                    string index_ = dc.ReadTo(">");
 
-                    dc.Skip("<pordriadchick>");
-                    string pdr = dc.ReadTo(">");
+                    dc.Skip("<name>");
+                    string nm = dc.ReadTo(">");
 
                     dc.Skip("<object>");
                     string obj = dc.ReadTo(">");
@@ -78,19 +112,20 @@ namespace WindowsFormsApp1
                     dc.Skip("<whoadd>");
                     string wadd = dc.ReadTo(">");
 
-                    if (string.IsNullOrWhiteSpace(chk))
+                    if (string.IsNullOrWhiteSpace(index_))
                     {
-                        break;
+                        dataGridView1.DataSource = prd;
+                        return prd;
                     }
-                    dataGridView1.Rows.Add(
-                        chk,
-                        pdr,
+                    prd.Add(new Predpisanie(
+                        Convert.ToInt32(index_),
+                        nm,
                         obj,
                         what,
                         dst,
                         tout,
                         tadd,
-                        wadd);                    
+                        wadd));
                 }
             }
             else 
@@ -106,6 +141,7 @@ namespace WindowsFormsApp1
                     File.Create("base.txt");
                 }
                 //this.TopMost = true;
+                return prd;
             }
         }
         

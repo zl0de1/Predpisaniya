@@ -9,6 +9,7 @@ namespace WindowsFormsApp1
     class User
     {
         private string name;
+        private string pathToBase;
         public User() { }
         public User(string name)
         {
@@ -18,6 +19,11 @@ namespace WindowsFormsApp1
         {
             get { return name; }
             set { name = value; }
+        }
+        public string PathToBase
+        {
+            get { return pathToBase; }
+            set { pathToBase = value; }
         }
     }
 }
