@@ -31,8 +31,7 @@ namespace WindowsFormsApp1
                 comboBox1.Items.Add(Path.GetFileNameWithoutExtension(file.FullName));
             }
 
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
-            
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;  
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -70,6 +69,13 @@ namespace WindowsFormsApp1
                 Form_AddElement FrAdd = new Form_AddElement(user.Name, user.PathToBase);
                 FrAdd.Show();
             }
+        }
+
+        private void buttonPdr_Click(object sender, EventArgs e) //реестр подрядчиков
+        {
+            Form_PdrList FrPdr = new Form_PdrList(user.Name);
+            FrPdr.Show();
+
         }
 
         private void button2_Click(object sender, EventArgs e) //reload
@@ -144,8 +150,6 @@ namespace WindowsFormsApp1
                 return prd;
             }
         }
-        
-        //надо будет пихнуть в отдельный метод где то вне(лишний повтор в 2х классах)
-        
+
     }
 }

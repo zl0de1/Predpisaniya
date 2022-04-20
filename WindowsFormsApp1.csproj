@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B4551095-1E85-4C93-800D-C9DACCA9773B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Predpisaniya</RootNamespace>
-    <AssemblyName>Predpisaniya</AssemblyName>
+    <RootNamespace>WindowsFormsApp1</RootNamespace>
+    <AssemblyName>WindowsFormsApp1</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\Podriadchik.cs" />
     <Compile Include="Decoding.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -74,21 +75,30 @@
     <Compile Include="Form_AddElement.Designer.cs">
       <DependentUpon>Form_AddElement.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_PdrList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_PdrList.Designer.cs">
+      <DependentUpon>Form_PdrList.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Predpisanie.cs" />
+    <Compile Include="Class\Predpisanie.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="Class\User.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_AddElement.resx">
       <DependentUpon>Form_AddElement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_PdrList.resx">
+      <DependentUpon>Form_PdrList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
