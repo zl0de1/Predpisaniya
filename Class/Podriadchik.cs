@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Predpisaniya.Class
+namespace WindowsFormsApp1
 {
     class Podriadchik
     {

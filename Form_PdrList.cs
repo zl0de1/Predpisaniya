@@ -19,8 +19,8 @@ namespace WindowsFormsApp1
             InitializeComponent();
             this.user.Name = name;
 
-            List<Predpisanie> prd = new List<Predpisanie>();
-            //listBoxPdr.Items.AddRange(prd);
+            List<Podriadchik> pdrsList = new List<Podriadchik>();
+            //listBoxPdr.Items.Add(pdrsList);
         }
 
         private void Form_PdrList_Load(object sender, EventArgs e)
