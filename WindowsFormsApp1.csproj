@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class\Podriadchik.cs" />
+    <Compile Include="Class\Street.cs" />
     <Compile Include="Decoding.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

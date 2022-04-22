@@ -13,7 +13,6 @@ namespace WindowsFormsApp1
     public partial class Form1 : Form
     {
         User user = new User();
-        List<string> podriadchiki = new List<string>();
 
         public Form1()
         {
@@ -25,7 +24,7 @@ namespace WindowsFormsApp1
             //user.Name = "user";
             linkLabel1.Text = "Вы вошли как " + user.Name;
 
-            var dir = new DirectoryInfo(Environment.CurrentDirectory + @"\bases");
+            var dir = new DirectoryInfo(Environment.CurrentDirectory + @"\bases\registry\");
             foreach (FileInfo file in dir.GetFiles())
             {
                 comboBox1.Items.Add(Path.GetFileNameWithoutExtension(file.FullName));
@@ -39,7 +38,7 @@ namespace WindowsFormsApp1
             string selectedBase = comboBox1.SelectedItem.ToString();
             //MessageBox.Show(selectedBase);
             
-            string pathToBase = Environment.CurrentDirectory + @"\bases\" + selectedBase +".txt";
+            string pathToBase = Environment.CurrentDirectory + @"\bases\registry\" + selectedBase +".txt";
             
             user.PathToBase = pathToBase;
 
