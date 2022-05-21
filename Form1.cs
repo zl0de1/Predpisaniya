@@ -37,12 +37,10 @@ namespace WindowsFormsApp1
         {
             string selectedBase = comboBox1.SelectedItem.ToString();
             //MessageBox.Show(selectedBase);
-            
-            string pathToBase = Environment.CurrentDirectory + @"\bases\registry\" + selectedBase +".txt";
-            
-            user.PathToBase = pathToBase;
 
-            List <Predpisanie> prd = new List<Predpisanie>(ReloadBase(pathToBase));
+            user.PathToBase = Environment.CurrentDirectory + @"\bases\registry\" + selectedBase +".txt";
+
+            List <Predpisanie> prd = new List<Predpisanie>(ReloadBase(user.PathToBase));
             dataGridView1.DataSource = prd;
             dataGridView1.Columns[0].Width = 33;
             dataGridView1.Columns[1].Width = 90;
